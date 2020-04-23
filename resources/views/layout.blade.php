@@ -8,76 +8,64 @@
     <link href="https://fonts.googleapis.com/css?family=Titillium+Web:400,400i,600,600i,700&display=swap"
         rel="stylesheet">
     <title>@yield('title') | LiteMailer</title>
+
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
 </head>
 
-<body class="font-custom min-h-screen">
-    <header class="py-4 px-6 absolute top-0 left-0 right-0 z-10">
+<body class="min-h-screen">
+    <header x-data="{ openNav: false }" :class="{'bg-white': openNav === true }"
+        class="py-4 px-6 absolute top-0 left-0 right-0 z-10 h-48">
         <div class="container mx-auto">
-            <div class="flex items-center">
-                <div class="flex-1">
+            <nav class="flex items-center justify-between flex-wrap">
+                <div class="flex items-center flex-shrink-0 mr-6">
                     <a href="{{url('/')}}" class="text-3xl font-bold">LiteMailer</a>
                 </div>
-                <button class="text-secondary lg:hidden">
-                    <svg class="current-fill h-6 w-6" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-                        xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="-49 141 512 512"
-                        style="enable-background:new -49 141 512 512;" xml:space="preserve">
-                        <g>
-                            <g>
-                                <path
-                                    d="M413,422H1c-13.807,0-25-11.193-25-25s11.193-25,25-25h412c13.807,0,25,11.193,25,25S426.807,422,413,422z" />
-                            </g>
-                            <g>
-                                <path
-                                    d="M413,562H1c-13.807,0-25-11.193-25-25s11.193-25,25-25h412c13.807,0,25,11.193,25,25S426.807,562,413,562z" />
-                            </g>
-                            <g>
-                                <path
-                                    d="M413,282H1c-13.807,0-25-11.193-25-25s11.193-25,25-25h412c13.807,0,25,11.193,25,25S426.807,282,413,282z" />
-                            </g>
-                        </g>
-                    </svg>
+                <div class="block lg:hidden">
+                    <button @click="openNav = !openNav" class="flex items-center px-3 py-2">
+                        <svg fill="currentColor" viewBox="0 0 20 20" class="w-6 h-6">
+                            <path x-show="!openNav" fill-rule="evenodd"
+                                d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z"
+                                clip-rule="evenodd" style="display: none;"></path>
+                            <path x-show="openNav" fill-rule="evenodd"
+                                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
+                </div>
+                <div :class="{'hidden': openNav === false }"
+                    class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+                    <div class="text-sm lg:flex-grow">
+                    </div>
 
-                </button>
-                <nav class="hidden lg:flex items-center">
-                    <a href="{{url('/')}}" class="px-6 py-3 font-bold uppercase">Home</a>
-                    <a href="{{url('email/send')}}"
-                        class="px-6 py-3 font-bold uppercase">
-                        Send Mail
-                    </a>
-                    <a href="{{url('email/send')}}"
-                        class="px-6 py-3 font-bold uppercase">
-                        Add E-Mail
-                    </a>
-                </nav>
-            </div>
+                    <div>
+                        <a href="{{url('/')}}" class="block mt-4 lg:inline-block lg:mt-0  font-bold uppercase mr-4">
+                            Home
+                        </a>
+                        <a href="{{url('email/send')}}"
+                            class="block mt-4 lg:inline-block lg:mt-0  font-bold uppercase mr-4">
+                            Send Mail
+                        </a>
+                        <a href="{{url('email/add')}}"
+                            class="block mt-4 lg:inline-block lg:mt-0  font-bold uppercase mr-4">
+                            Add Mail
+                        </a>
+                    </div>
+                </div>
+            </nav>
         </div>
     </header>
-    <div class="relative overflow-hidden px-6 pb-6">
-        <img src="images/wave.svg" class="absolute top-0 left-2/5">
-        <div class="container mx-auto relative">
-            <div class="flex flex-col md:flex-row items-center pt-32 pb-16 md:pb-0">
-                <div class="md:w-1/2 lg:w-1/3 mb-4 sm:mb-16 md:mb-0">
-                    <h1 class="text-4xl md:text-5xl font-bold text-secondary leading-tight mb-6 md:mb-10">
-                        Bulk email software for email marketing
-                    </h1>
-                    <p class="text-xl ">
-                        LiteMailer is an email sending application. You can check how we built it by following this <a
-                            class="text-teal-500 text-" href="http://stephenjude.me/series/laravel-lessons">blog
-                            series</a>.
-                    </p>
-                </div>
-                <div class="mt-16 sm:mt-0 flex-1 flex justify-end">
-                    <img src="images/hero.svg">
-                </div>
-            </div>
-        </div>
-    </div>
+    <main>
+        @yield('content')
+    </main>
     <footer class="pt-12">
         <div class="bg-blue-100">
-            <div class="container mx-auto px-6 py-12 text-secondary-500 text-center border-t border-gray-300">
-                <p>Copyright ©2019 TaildwindComponents. All rights reserved. | Illustrations by <a
-                        href="https://freepik.com/" class="text-secondary-900 font-bold underline">Freepik</a> | Avatars
-                    by <a href="https://uifaces.co/" class="text-secondary-900 font-bold underline">UI Faces</a></p>
+            <div class="container mx-auto px-6 py-6 text-secondary-500 text-center border-t border-gray-300">
+                <p>LiteMailer {{ date('Y') }}
+                    | Fork on <a href="https://github.com/stephenjude/litemailer" class="font-bold underline">Github</a>
+                    | Made with <a class="font-bold underline" href="https://tailwindcss.com">TailwindCSS</a>,
+                    <a class="font-bold underline" href="https://github.com/alpinejs/alpine">AlpineJs</a> &
+                    <a class="font-bold underline" href="https://tailwindcomponents.com">TailwindComponents</a>
+                </p>
             </div>
         </div>
     </footer>
