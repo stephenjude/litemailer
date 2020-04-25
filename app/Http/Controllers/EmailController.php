@@ -15,7 +15,7 @@ class EmailController extends Controller
     {
         $data = request()->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email,|max:255',
+            'email' => 'required|email:rfc|max:255',
         ]);
 
         //do some database operations with $data

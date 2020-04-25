@@ -13,12 +13,14 @@
 
                 <form class="px-8 pt-6 pb-8 mb-4" action="{{url('email/send')}}" method="POST">
                     @csrf
+                    
                     @include('alert')
+
                     <div class="mb-4">
                         <label class="block mb-2 text-sm font-bold text-gray-700">
                             Subject
                         </label>
-                        <input name="subject"
+                        <input name="subject" value="{{old('subject')}}"
                             class="w-full px-3 py-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                             type="text" placeholder="Enter email subject" />
                         @error('subject')
@@ -29,7 +31,7 @@
                         <label class="block mb-2 text-sm font-bold text-gray-700">
                             Message
                         </label>
-                        <textarea name="message"
+                        <textarea name="message" value="{{old('message')}}"
                             class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                             rows="12" placeholder="Message goes here..."></textarea>
                         @error('message')

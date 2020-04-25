@@ -12,11 +12,14 @@
                 <h3 class="pt-4 text-2xl text-center">Add New Email</h3>
                 <form class="px-8 pt-6 pb-8 mb-4" action="{{url('email/add')}}" method="POST">
                     @csrf
+                    
+                    @include('alert')
+
                     <div class="mb-4">
                         <label class="block mb-2 text-sm font-bold text-gray-700">
                             Name
                         </label>
-                        <input name="name"
+                        <input name="name" value="{{old('name')}}"
                             class="w-full px-3 py-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                             type="text" placeholder="Enter your name" />
                         @error('name')
@@ -27,7 +30,7 @@
                         <label class="block mb-2 text-sm font-bold text-gray-700">
                             Email
                         </label>
-                        <input name="email"
+                        <input name="email" value="{{old('email')}}"
                             class="w-full px-3 py-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                             type="email" placeholder="Enter your email" />
                         @error('email')
