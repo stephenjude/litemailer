@@ -25,14 +25,14 @@ class EmailController extends Controller
 
     public function showSendEmailForm()
     {
-        return view('add-email');
+        return view('send-email');
     }
 
     public function sendEmail()
     {
         $data = request()->validate([
             'subject' => 'required|string|max:255',
-            'body' => 'required',
+            'message' => 'required',
         ]);
 
         //do some database operations with $data

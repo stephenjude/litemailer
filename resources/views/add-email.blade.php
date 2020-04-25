@@ -10,27 +10,34 @@
         <div class="flex flex-col md:flex-row items-center pt-32 pb-16 md:pb-0">
             <div class="w-full shadow-lg md:w-1/2 lg:w-1/2 mb-4 sm:mb-16 md:mb-0 bg-white rounded-lg">
                 <h3 class="pt-4 text-2xl text-center">Add New Email</h3>
-                <form class="px-8 pt-6 pb-8 mb-4">
+                <form class="px-8 pt-6 pb-8 mb-4" action="{{url('email/add')}}" method="POST">
+                    @csrf
                     <div class="mb-4">
                         <label class="block mb-2 text-sm font-bold text-gray-700">
                             Name
                         </label>
-                        <input
+                        <input name="name"
                             class="w-full px-3 py-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                             type="text" placeholder="Enter your name" />
+                        @error('name')
+                        <p class="text-red-500 text-xs italic pt-1">{{ $errors->first('name') }}</p>
+                        @enderror
                     </div>
                     <div class="mb-8">
                         <label class="block mb-2 text-sm font-bold text-gray-700">
                             Email
                         </label>
-                        <input
+                        <input name="email"
                             class="w-full px-3 py-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                             type="email" placeholder="Enter your email" />
+                        @error('email')
+                        <p class="text-red-500 text-xs italic pt-1">{{ $errors->first('email') }}</p>
+                        @enderror
                     </div>
                     <div class="mb-6 text-center">
                         <button
                             class="w-full px-4 py-2 font-bold text-white bg-teal-400 rounded-full hover:bg-teal-500 focus:outline-none focus:shadow-outline"
-                            type="button">
+                            type="submit">
                             Submit
                         </button>
                     </div>
