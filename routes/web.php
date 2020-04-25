@@ -14,5 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::view('/', 'welcome');
-Route::view('/email/add', 'add-email');
-Route::view('/email/send', 'send-email');
+
+Route::get('/email/add', 'EmailController@showEmailForm');
+
+Route::post('/email/add', 'EmailController@saveEmail');
+
+Route::get('/email/send', 'EmailController@showSendEmailForm');
+
+Route::post('/email/send', 'EmailController@sendEmail');
