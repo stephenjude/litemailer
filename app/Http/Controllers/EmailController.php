@@ -35,7 +35,7 @@ class EmailController extends Controller
             'message' => 'required',
         ]);
 
-        //do some database operations with $data
+        //do some email sending operations with $data
 
         return redirect()->back()->with('message', 'Your bulk email was sent successfully');
     }
