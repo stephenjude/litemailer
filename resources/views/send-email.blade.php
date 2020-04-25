@@ -13,6 +13,7 @@
 
                 <form class="px-8 pt-6 pb-8 mb-4" action="{{url('email/send')}}" method="POST">
                     @csrf
+                    @include('alert')
                     <div class="mb-4">
                         <label class="block mb-2 text-sm font-bold text-gray-700">
                             Subject
