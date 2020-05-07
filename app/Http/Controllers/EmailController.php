@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\EmailList;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class EmailController extends Controller
 {
@@ -31,12 +32,25 @@ class EmailController extends Controller
 
     public function sendEmail()
     {
-        $data = request()->validate([
+        request()->validate([
             'subject' => 'required|string|max:255',
             'message' => 'required',
         ]);
 
-        
+        //data we are passing to our email blade template
+        $data = [
+            'title' => request('subject'),
+            'body' => request('message'),
+        ];
+
+        // return an array of all the emails in our database
+        $emails = EmailList::all('email')->pluck('email')->toArray();
+
+        // send out email
+        Mail::send('emails.welcome', $data, function ($message) use ($emails) {
+            $message->to($emails);
+            $message->subject('LiteMailer Bulk Email');
+        });
 
         return redirect()->back()->with('message', 'Your bulk email was sent successfully');
     }
