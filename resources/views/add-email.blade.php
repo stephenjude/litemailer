@@ -2,7 +2,6 @@
 
 @section('title', 'Send Builk Email')
 
-
 @section('content')
 <div class="relative overflow-hidden px-6 pb-6">
     <img src="{{ asset('images/wave.svg') }}" class="absolute top-0 left-2/5">
@@ -12,7 +11,7 @@
                 <h3 class="pt-4 text-2xl text-center">Add New Email</h3>
                 <form class="px-8 pt-6 pb-8 mb-4" action="{{url('email/add')}}" method="POST">
                     @csrf
-                    
+
                     @include('alert')
 
                     <div class="mb-4">

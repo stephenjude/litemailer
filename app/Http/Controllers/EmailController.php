@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\EmailList;
 use Illuminate\Http\Request;
 
 class EmailController extends Controller
@@ -15,10 +16,10 @@ class EmailController extends Controller
     {
         $data = request()->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email:rfc|max:255',
+            'email' => 'required|email:rfc|max:255|unique:email_lists,email',
         ]);
 
-        //do some database operations with $data
+        EmailList::create($data);
 
         return redirect()->back()->with('message', 'Your email was added successfully');
     }
@@ -35,7 +36,7 @@ class EmailController extends Controller
             'message' => 'required',
         ]);
 
-        //do some email sending operations with $data
+        
 
         return redirect()->back()->with('message', 'Your bulk email was sent successfully');
     }
