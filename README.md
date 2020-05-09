@@ -26,6 +26,10 @@ DB_DATABASE=litemailer
 DB_USERNAME=root
 DB_PASSWORD="your_database_password"
 ```
+Run artisan migrate command
+```
+php artisan migrate
+```
 
 Add your SMTP credetials (use [mailtrap.io](https:\\mailtrap.io))
 ```
@@ -37,6 +41,8 @@ MAIL_PASSWORD=xxxxxxxxxxxxxx
 MAIL_FROM_ADDRESS=hello@litemailer.test
 MAIL_FROM_NAME=LiteMailer
 ```
+
+You can now run the app
 
 ### Features
 - Add email address.
