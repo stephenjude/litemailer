@@ -27,6 +27,9 @@
                     <a href="{{url('/')}}" class="block mt-4 lg:inline-block lg:mt-0  font-bold uppercase mr-4">
                         Home
                     </a>
+                    <a href="{{url('email/list')}}" class="block mt-4 lg:inline-block lg:mt-0  font-bold uppercase mr-4">
+                        List EMail
+                    </a>
                     <a href="{{url('email/send')}}"
                         class="block mt-4 lg:inline-block lg:mt-0  font-bold uppercase mr-4">
                         Send Bulk EMail

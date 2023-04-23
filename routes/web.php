@@ -17,6 +17,8 @@ Route::view('/', 'welcome');
 
 Route::get('/email/add', 'EmailController@showAddEmailForm');
 
+Route::get('/email/list', 'EmailController@showEmailList');
+
 Route::post('/email/add', 'EmailController@saveEmail');
 
 Route::get('/email/send', 'EmailController@showSendEmailForm');
