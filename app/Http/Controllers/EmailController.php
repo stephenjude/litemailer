@@ -13,6 +13,13 @@ class EmailController extends Controller
         return view('add-email');
     }
 
+    public function showEmailList()
+    {
+        $emails = EmailList::all();
+
+        return view('list-email', compact('emails'));
+    }
+
     public function saveEmail()
     {
         $data = request()->validate([
